@@ -1,75 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Magical Task Manager ✨</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="dashboard">
-    <header>
-      <h1>Dashboard</h1>
-    </header>
-    <section class="widgets">
-      <div class="widget timer">
-        <h2>Timer</h2>
-        <div id="timerDisplay">00:00:00</div>
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="resetTimer()">Reset</button>
-      </div>
-      <div class="widget calendar">
-        <h2>Calendar</h2>
-        <div id="calendarControls">
-          <button onclick="prevMonth()">Prev</button>
-          <span id="calendarMonthYear"></span>
-          <button onclick="nextMonth()">Next</button>
-        </div>
-        <div id="calendar"></div>
-      </div>
-      <div class="tasks">
-        <header>Task Manager</header>
-        <div class="widgets">
-          <div class="widget">
-            <div id="calendar">
-              <div id="calendarControls">
-                <button id="prevMonth" class="arrow">&larr;</button>
-                <span id="currentMonth"></span>
-                <button id="nextMonth" class="arrow">&rarr;</button>
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                  </tr>
-                </thead>
-                <tbody id="calendarBody"></tbody>
-              </table>
+    <div class="heading">
+        <h1>✨  Task Manager ✨</h1>
+    </div>
+    <div class="magical-container">
+        <div class="card task-form">
+            <h2>✨ Create Task ✨</h2>
+            <div class="input-group">
+                <input type="text" id="taskName" placeholder="✍️ Enter Task Name">
             </div>
-          </div>
-          <div class="widget task-manager">
-            <div class="tasks">
-              <h2>Task Manager</h2>
-              <div class="task-controls">
-                <input type="text" id="taskInput" placeholder="Enter a task" />
-                <button onclick="addTask()">Add Task</button>
-              </div>
-              <ul id="taskList"></ul>
-              <button class="clear-tasks" onclick="clearAllTasks()">Clear All Tasks</button>
+            <div class="input-group">
+                <input type="datetime-local" id="taskDate">
             </div>
-          </div>
+            <div class="input-group">
+                <select id="taskPriority">
+                    <option value="high">🔥 High Priority</option>
+                    <option value="low">🌿 Low Priority</option>
+                </select>
+            </div>
+            <button class="magical-button" onclick="addTask()">
+                <i class="fas fa-magic"></i> Create Task
+            </button>
         </div>
-      </div>
-      <script src="script.js"></script>
-    </body>
-    </html>
-  <script src="script.js"></script>
+
+        <div class="card">
+            <h3>🔥 High Priority Tasks</h3>
+            <div id="highPriorityTasks"></div>
+        </div>
+
+        <div class="card">
+            <h3>🌿 Low Priority Tasks</h3>
+            <div id="lowPriorityTasks"></div>
+        </div>
+
+        <div class="card calendar">
+            <h2>📅 Calendar</h2>
+            <div class="status-legend">
+                <div class="legend-item glowing-status">
+                    <span class="task-dot ongoing"></span>
+                    <span>Ongoing</span>
+                </div>
+                <div class="legend-item glowing-status">
+                    <span class="task-dot completed"></span>
+                    <span>Completed</span>
+                </div>
+            </div>
+            <div class="calendar-header">
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+                <div>Sunday</div>
+            </div>
+            <div id="calendarGrid" class="calendar-grid"></div>
+        </div>
+        <div class="card">
+            <h3>🕒 Task History</h3>
+            <div id="taskHistory"></div>
+        </div>
+    </div>
+   
+
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h3>Edit Task</h3>
+        <div class="input-group">
+            <input type="text" id="editTaskName" placeholder="Task Name">
+        </div>
+        <div class="input-group">
+            <input type="datetime-local" id="editTaskDate">
+        </div>
+        <div class="input-group">
+            <select id="editTaskPriority">
+                <option value="high">High Priority</option>
+                <option value="low">Low Priority</option>
+            </select>
+        </div>
+        <button class="magical-button" onclick="saveTaskEdits()">Save</button>
+        <button class="magical-button cancel" onclick="closeEditModal()">Cancel</button>
+    </div>
+</div>
+        </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
