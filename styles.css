@@ -1,0 +1,299 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #141e30, #243b55);
+  color: #fff;
+  overflow-x: hidden;
+  animation: bg-animation 10s infinite alternate;
+}
+
+@keyframes bg-animation {
+  0% { background: linear-gradient(45deg, #141e30, #243b55); }
+  50% { background: linear-gradient(45deg, #1c375f, #283c63); }
+  100% { background: linear-gradient(45deg, #141e30, #243b55); }
+}
+
+
+.dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  color: #ff9ff3;
+}
+
+
+.widgets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.widget {
+  flex: 1 1 calc(33.333% - 20px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1), 0 0 15px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.widget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+}
+
+/* Timer Widget */
+.timer button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #ff9ff3;
+  color: #141e30;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.timer button:hover {
+  background-color: #f368e0;
+  color: #fff;
+}
+
+#timerDisplay {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+#calendarControls {
+  margin-bottom: 10px;
+}
+
+#calendarControls button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #48dbfb;
+  color: #141e30;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#calendarControls button:hover {
+  background-color: #1dd1a1;
+  color: #fff;
+}
+
+#calendar table {
+  width: 100%;
+  margin: 10px 0;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+#calendar th, #calendar td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#calendar td:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+
+#taskInput {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+}
+
+#taskInput::placeholder {
+  color: #ccc;
+}
+
+.tasks button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #5f27cd;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tasks button:hover {
+  background-color: #341f97;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+#taskList li.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+#taskList li button {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#taskList li button:hover {
+  color: #ff1a1a;
+}
+
+.clear-tasks {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-tasks:hover {
+  background: #ee5253;
+}
+
+#prioritySelect {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+}
+
+
+#searchTask {
+  width: 80%;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+}
+#progressContainer {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#progressBar {
+  background: #1dd1a1;
+  height: 100%;
+  width: 0;
+  transition: width 0.3s;
+}
+
+
+.theme-toggle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.theme-toggle label {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.theme-toggle input {
+  transform: scale(1.5);
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #141e30, #243b55);
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #ffffff 1px, transparent 1px);
+  background-size: 10px 10px;
+  animation: star-animation 20s linear infinite;
+}
+
+body::after {
+  background-size: 5px 5px;
+  animation: star-animation 30s linear infinite;
+}
+
+@keyframes star-animation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+}

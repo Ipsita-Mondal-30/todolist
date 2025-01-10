@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <header>
+      <h1>Dashboard</h1>
+    </header>
+    <section class="widgets">
+      <div class="widget timer">
+        <h2>Timer</h2>
+        <div id="timerDisplay">00:00:00</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+      <div class="widget calendar">
+        <h2>Calendar</h2>
+        <div id="calendarControls">
+          <button onclick="prevMonth()">Prev</button>
+          <span id="calendarMonthYear"></span>
+          <button onclick="nextMonth()">Next</button>
+        </div>
+        <div id="calendar"></div>
+      </div>
+      <div class="tasks">
+        <header>Task Manager</header>
+        <div class="widgets">
+          <div class="widget">
+            <div id="calendar">
+              <div id="calendarControls">
+                <button id="prevMonth" class="arrow">&larr;</button>
+                <span id="currentMonth"></span>
+                <button id="nextMonth" class="arrow">&rarr;</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                  </tr>
+                </thead>
+                <tbody id="calendarBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="widget task-manager">
+            <div class="tasks">
+              <h2>Task Manager</h2>
+              <div class="task-controls">
+                <input type="text" id="taskInput" placeholder="Enter a task" />
+                <button onclick="addTask()">Add Task</button>
+              </div>
+              <ul id="taskList"></ul>
+              <button class="clear-tasks" onclick="clearAllTasks()">Clear All Tasks</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="script.js"></script>
+    </body>
+    </html>
+  <script src="script.js"></script>
+</body>
+</html>
