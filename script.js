@@ -31,7 +31,7 @@ function displayTimer() {
     `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-// Calendar functionality
+
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
