@@ -313,7 +313,6 @@ body {
   opacity: 1;
 }
 
-/* Delete Button in History Items */
 .task-history-item button {
   background: linear-gradient(145deg, #ff3b3b, #cc0000);
   color: white;
@@ -581,7 +580,7 @@ body {
   opacity: 0.3;
 }
 
-/* Calendar date style */
+
 .calendar-date {
   font-weight: 600;
   margin-bottom: 8px;
