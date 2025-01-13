@@ -2,6 +2,23 @@ let tasks = [];
 let history = [];
 let editingTaskId = null;
 
+function initializeDatePickers() {
+    const dateConfig = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: false,
+        minuteIncrement: 15,
+        position: "auto",
+        static: true,
+        wrap: true,
+        allowInput: false,
+        disableMobile: false
+    };
+
+    flatpickr("#taskDate", dateConfig);
+    flatpickr("#editTaskDate", dateConfig);
+}
+
 function addTask() {
     const name = document.getElementById('taskName').value;
     const date = document.getElementById('taskDate').value;
@@ -22,7 +39,7 @@ function addTask() {
     updateCalendar();
 
     document.getElementById('taskName').value = '';
-    document.getElementById('taskDate').value = '';
+    document.getElementById('taskDate')._flatpickr.clear();
 }
 
 function toggleTaskStatus(id) {
@@ -62,7 +79,7 @@ function editTask(id) {
 
     editingTaskId = id;
     document.getElementById('editTaskName').value = task.name;
-    document.getElementById('editTaskDate').value = task.date;
+    document.getElementById('editTaskDate')._flatpickr.setDate(task.date);
     document.getElementById('editTaskPriority').value = task.priority;
 
     document.getElementById('editModal').style.display = 'flex';
@@ -88,6 +105,7 @@ function saveTaskEdits() {
 function closeEditModal() {
     editingTaskId = null;
     document.getElementById('editModal').style.display = 'none';
+    document.getElementById('editTaskDate')._flatpickr.clear();
 }
 
 function updateTasks() {
@@ -103,7 +121,7 @@ function updateTasks() {
         taskElement.innerHTML = `
             <span>${task.name} - ${new Date(task.date).toLocaleString()}</span>
             <button class="magical-button" onclick="toggleTaskStatus(${task.id})">
-                ${task.status === 'ongoing' ? '🔮 Completed' : '✨ Completed'}
+                ${task.status === 'ongoing' ? '🔮 Complete' : '✨ Complete'}
             </button>
             <button class="magical-button" onclick="editTask(${task.id})">✏️ Edit</button>
             <button class="magical-button cancel" onclick="deleteTask(${task.id})">🗑 Delete</button>
@@ -143,22 +161,18 @@ function updateCalendar() {
     let firstDayIndex = firstDay.getDay();
     firstDayIndex = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
 
-    
     for (let i = 0; i < firstDayIndex; i++) {
         calendar.appendChild(createCalendarDay(''));
     }
 
-    
     for (let date = 1; date <= lastDay.getDate(); date++) {
         const currentDate = new Date(today.getFullYear(), today.getMonth(), date);
         
-       
         const dayTasks = tasks.filter((task) => {
             const taskDate = new Date(task.date);
             return taskDate.toDateString() === currentDate.toDateString();
         });
 
-       
         const completedTasks = history.filter((task) => {
             const taskDate = new Date(task.date);
             return taskDate.toDateString() === currentDate.toDateString();
@@ -174,27 +188,23 @@ function createCalendarDay(date, dayTasks = [], completedTasks = []) {
     const day = document.createElement('div');
     day.className = 'calendar-day';
     
- 
     const dateDisplay = document.createElement('div');
     dateDisplay.className = 'calendar-date';
     dateDisplay.textContent = date;
     day.appendChild(dateDisplay);
 
-    if (date !== '') { 
+    if (date !== '') {
         const totalTasks = dayTasks.length + completedTasks.length;
         
         if (totalTasks > 0) {
-          
             const progressContainer = document.createElement('div');
             progressContainer.className = 'day-progress';
 
-         
             const taskCount = document.createElement('div');
             taskCount.className = 'task-count';
             taskCount.textContent = `${completedTasks.length}/${totalTasks}`;
             progressContainer.appendChild(taskCount);
 
-            
             const progressBar = document.createElement('div');
             progressBar.className = 'progress-bar';
             const progressPercentage = (completedTasks.length / totalTasks) * 100;
@@ -206,7 +216,6 @@ function createCalendarDay(date, dayTasks = [], completedTasks = []) {
             progressBar.appendChild(progressFill);
             progressContainer.appendChild(progressBar);
 
-            
             const tasksContainer = document.createElement('div');
             tasksContainer.className = 'task-indicators';
 
@@ -253,7 +262,6 @@ function showDayTasks(date, dayTasks, completedTasks) {
     const totalTasks = ongoingCount + completedCount;
     const completionRate = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
 
-   
     modalContent.innerHTML += `
         <div class="task-statistics">
             <div class="stat-item">
@@ -271,7 +279,6 @@ function showDayTasks(date, dayTasks, completedTasks) {
         </div>
     `;
 
-   
     if (dayTasks.length > 0) {
         modalContent.innerHTML += '<h4>Tasks In Progress:</h4>';
         const ongoingTasksList = document.createElement('div');
@@ -287,7 +294,6 @@ function showDayTasks(date, dayTasks, completedTasks) {
         });
         modalContent.appendChild(ongoingTasksList);
     }
-
 
     if (completedTasks.length > 0) {
         modalContent.innerHTML += '<h4>Completed Tasks:</h4>';
@@ -305,7 +311,6 @@ function showDayTasks(date, dayTasks, completedTasks) {
         modalContent.appendChild(completedTasksList);
     }
 
-    
     if (totalTasks === 0) {
         modalContent.innerHTML += '<p class="no-tasks">No tasks scheduled for this day</p>';
     }
@@ -314,3 +319,5 @@ function showDayTasks(date, dayTasks, completedTasks) {
 function closeModal() {
     document.getElementById('dayTasksModal').style.display = 'none';
 }
+
+document.addEventListener('DOMContentLoaded', initializeDatePickers);
