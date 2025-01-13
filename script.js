@@ -31,7 +31,7 @@ function toggleTaskStatus(id) {
 
     if (task.status === 'ongoing') {
         task.status = 'completed';
-        history.push({...task}); // Create a copy of the task for history
+        history.push({...task}); 
         tasks = tasks.filter((t) => t.id !== id);
     } else {
         task.status = 'ongoing';
